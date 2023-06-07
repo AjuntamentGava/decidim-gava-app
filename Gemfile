@@ -12,6 +12,8 @@ else
   gem "decidim", DECIDIM_VERSION
 end
 
+gem "decidim-cdtb", git: "https://github.com/CodiTramuntana/decidim-module-cdtb", branch: "main"
+
 gem "data_migrate"
 gem "figaro", ">= 1.1.1"
 gem "foundation-rails"
