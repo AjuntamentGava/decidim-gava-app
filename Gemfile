@@ -6,7 +6,7 @@ ruby "3.1.3"
 
 DECIDIM_VERSION = "0.27.4"
 
-if ENV["USE_LOCAL_DECIDIM"] == "true"
+if ENV.fetch("USE_LOCAL_DECIDIM", nil) == "true"
   gem "decidim", path: "~/dev/decidim"
 else
   gem "decidim", DECIDIM_VERSION
@@ -17,20 +17,20 @@ gem "decidim-cdtb", git: "https://github.com/CodiTramuntana/decidim-module-cdtb"
 # Temporal solution to prevent Psych::BadAlias
 gem "psych", "<4"
 
+gem "acts_as_textcaptcha", "~> 4.6.0"
+gem "daemons"
 gem "data_migrate"
+gem "decidim-decidim_awesome", "~> 0.9.3"
+gem "decidim-question_captcha", git: "https://github.com/OpenSourcePolitics/decidim-module-question_captcha", branch: "release/0.27-stable"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "master"
+gem "delayed_job_active_record"
 gem "figaro", ">= 1.1.1"
 gem "foundation-rails"
 gem "httparty"
 gem "progressbar"
-gem "uglifier", ">= 1.3.0"
-gem "daemons"
-gem "delayed_job_active_record"
-gem "whenever"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "master"
-gem "decidim-decidim_awesome", "~> 0.9.3"
-gem "decidim-question_captcha", git: "https://github.com/OpenSourcePolitics/decidim-module-question_captcha", branch: "release/0.27-stable"
-gem "acts_as_textcaptcha", "~> 4.6.0"
+gem "uglifier", ">= 1.3.0"
+gem "whenever"
 
 gem "puma"
 
@@ -41,14 +41,14 @@ group :development, :test do
 end
 
 group :development do
+  gem "capistrano-bundler"
   gem "decidim-dev", DECIDIM_VERSION
-  gem "web-console"
+  gem "faker"
   gem "listen"
+  gem "pry-remote"
   gem "spring"
   gem "spring-watcher-listen"
-  gem "faker"
-  gem "capistrano-bundler"
-  gem "pry-remote"
+  gem "web-console"
 end
 
 group :development, :staging do
@@ -56,13 +56,13 @@ group :development, :staging do
 end
 
 group :production do
+  gem "dalli"
   gem "fog-aws"
   gem "newrelic_rpm"
-  gem "dalli"
   gem "rack-host-redirect"
 end
 
 group :test do
-  gem "rspec-rails"
   gem "database_cleaner"
+  gem "rspec-rails"
 end

@@ -178,9 +178,13 @@ Layout/ParameterAlignment:
   IndentationWidth: ~
 
 Style/AndOr:
-  # Whether `and` and `or` are banned only in conditionals (conditionals)
-  # or completely (always).
-  EnforcedStyle: always
+  # Whether `and` and `or` are banned only in conditionals (conditionals)Rails/UnknownEnv:
+  Environments:
+    - development
+    - preproduction
+    - production
+    - staging
+    - test
   SupportedStyles:
     - always
     - conditionals

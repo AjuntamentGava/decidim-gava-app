@@ -3,18 +3,17 @@
 require "rails_helper"
 require "decidim/dev/test/authorization_shared_examples"
 
+# rubocop:disable RSpec/MultipleMemoizedHelpers
+
 describe CensusAuthorizationHandler do
+  subject { handler }
+
   let(:registered_dni) { "12345678a" }
-  let(:registered_nie) { "x1234567a" }
-  let(:invalid_dni) { "(╯°□°）╯︵ ┻━┻" }
-  let(:document_number) { registered_dni }
-
-  let(:date_of_birth) { Time.zone.parse("1987-09-17") }
-
-  let(:user) { create(:user, nickname: "nickname") }
-  let(:subject) { handler }
   let(:handler) { described_class.from_params(params) }
-  let(:handler_errors) { handler.valid?; handler.errors }
+  let(:handler_errors) do
+    handler.valid?
+    handler.errors
+  end
   let(:params) do
     {
       document_number: document_number,
@@ -22,10 +21,16 @@ describe CensusAuthorizationHandler do
       user: user
     }
   end
-
   let(:httparty_response) { double }
   let(:inner_httparty_response) { double }
   let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_no_data }
+  let(:registered_nie) { "x1234567a" }
+  let(:invalid_dni) { "(╯°□°）╯︵ ┻━┻" }
+  let(:document_number) { registered_dni }
+
+  let(:date_of_birth) { Time.zone.parse("1987-09-17") }
+
+  let(:user) { create(:user, nickname: "nickname") }
 
   before do
     allow(HTTParty).to(receive(:get).and_return(httparty_response))
@@ -176,3 +181,5 @@ describe CensusAuthorizationHandler do
     end
   end
 end
+
+# rubocop:enable RSpec/MultipleMemoizedHelpers

@@ -133,15 +133,15 @@ describe CensusRestClient::Response do
 
     it "obfuscates personal information" do
       expect(subject).to eq([{
-        "barri" => "A*************************T",
-        "edat" => "**",
-        "habap1hab" => "****",
-        "habap2hab" => "D******R",
-        "habfecnac"=>"1***********************0",
-        "habnomcom" => "D*******************O",
-        "habnomhab" => "R*****O",
-        "sexe" => "*"
-      }])
+                              "barri" => "A*************************T",
+                              "edat" => "**",
+                              "habap1hab" => "****",
+                              "habap2hab" => "D******R",
+                              "habfecnac" => "1***********************0",
+                              "habnomcom" => "D*******************O",
+                              "habnomhab" => "R*****O",
+                              "sexe" => "*"
+                            }])
     end
   end
 end
