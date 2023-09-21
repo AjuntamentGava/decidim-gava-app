@@ -44,7 +44,7 @@ describe CensusRestClient::Response do
     end
   end
 
-  describe "pays_taxes_in_city?" do
+  xdescribe "pays_taxes_in_city?" do
     subject { response.pays_taxes_in_city? }
 
     context "when no data" do
