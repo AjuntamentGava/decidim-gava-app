@@ -15,7 +15,7 @@ test:
   <<: *default
   database: decidim-gava_test
 
-staging:
+preproduction:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
 
