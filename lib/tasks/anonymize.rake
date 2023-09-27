@@ -3,8 +3,9 @@
 require "progressbar"
 require "bcrypt"
 
-namespace :anonymize do
+# rubocop:disable Rails/SkipsModelValidations
 
+namespace :anonymize do
   def with_progress(collection, name:)
     total = collection.count
     progressbar = create_progress_bar(total: total)
@@ -20,7 +21,7 @@ namespace :anonymize do
 
   def create_progress_bar(total:)
     ProgressBar.create(
-      progress_mark:  " ",
+      progress_mark: " ",
       remainder_mark: "\u{FF65}",
       total: total,
       format: "%a %e %b\u{15E7}%i %p%% %t"
@@ -59,13 +60,13 @@ namespace :anonymize do
   end
 
   desc "Checks for the environment"
-  task :check do
+  task check: :environment do
     raise "Won't run unless the env var DISABLE_PRODUCTION_CHECK=1 is set" unless ENV["DISABLE_PRODUCTION_CHECK"]
     raise "Can't run this task in production environment" if Rails.env.production?
   end
 
   desc "Anonymizes a production dump."
-  task all: %i(users user_groups admins create_default_users update_organization_domain)
+  task all: [:users, :user_groups, :admins, :create_default_users, :update_organization_domain]
 
   task users: [:check, :environment] do
     with_progress Decidim::User.where.not("email ~* ?", "@(gava\.cat|populate\.tools)"), name: "users" do |user|
@@ -110,18 +111,18 @@ namespace :anonymize do
 
   task create_default_users: [:check, :environment] do
     ::Decidim::User.create!(default_user_attributes.merge(
-      email: "user@decidim.dev",
-      name: "Regular User",
-      nickname: "regular-user",
-      admin: false
-    ))
+                              email: "user@decidim.dev",
+                              name: "Regular User",
+                              nickname: "regular-user",
+                              admin: false
+                            ))
 
     ::Decidim::User.create!(default_user_attributes.merge(
-      email: "admin@decidim.dev",
-      name: "Admin User",
-      nickname: "admin-user",
-      admin: true
-    ))
+                              email: "admin@decidim.dev",
+                              name: "Admin User",
+                              nickname: "admin-user",
+                              admin: true
+                            ))
 
     ::Decidim::System::Admin.create!(
       email: "system@decidim.dev",
@@ -132,9 +133,11 @@ namespace :anonymize do
 
   task update_organization_domain: [:check, :environment] do
     if Rails.env.development?
-      default_organization.update_attributes!(host: "localhost")
+      default_organization.update!(host: "localhost")
     elsif Rails.env.staging?
-      default_organization.update_attributes!(host: "gava.populate.tools")
+      default_organization.update!(host: "gava.populate.tools")
     end
   end
 end
+
+# rubocop:enable Rails/SkipsModelValidations

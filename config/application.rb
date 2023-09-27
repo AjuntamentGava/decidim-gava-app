@@ -19,10 +19,10 @@ module DecidimBarcelona
     config.i18n.available_locales = %w(ca es en)
     config.i18n.default_locale = :en
     config.i18n.enforce_available_locales = false
-    config.i18n.fallbacks = {ca: [:en], es: [:en]}
+    config.i18n.fallbacks = { ca: [:en], es: [:en] }
 
     required_files = [
-      "#{Rails.root}/lib",
+      Rails.root.join("lib")
     ]
     config.autoload_paths += required_files
     config.eager_load_paths += required_files

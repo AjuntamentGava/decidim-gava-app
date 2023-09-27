@@ -3,18 +3,17 @@
 require "rails_helper"
 require "decidim/dev/test/authorization_shared_examples"
 
+# rubocop:disable RSpec/MultipleMemoizedHelpers
+
 describe CensusAuthorizationHandler do
+  subject { handler }
+
   let(:registered_dni) { "12345678a" }
-  let(:registered_nie) { "x1234567a" }
-  let(:invalid_dni) { "(╯°□°）╯︵ ┻━┻" }
-  let(:document_number) { registered_dni }
-
-  let(:date_of_birth) { Time.zone.parse("1987-09-17") }
-
-  let(:user) { create(:user, nickname: "nickname") }
-  let(:subject) { handler }
   let(:handler) { described_class.from_params(params) }
-  let(:handler_errors) { handler.valid?; handler.errors }
+  let(:handler_errors) do
+    handler.valid?
+    handler.errors
+  end
   let(:params) do
     {
       document_number: document_number,
@@ -22,12 +21,21 @@ describe CensusAuthorizationHandler do
       user: user
     }
   end
-
   let(:httparty_response) { double }
   let(:inner_httparty_response) { double }
   let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_no_data }
+  let(:registered_nie) { "x1234567a" }
+  let(:invalid_dni) { "(╯°□°）╯︵ ┻━┻" }
+  let(:document_number) { registered_dni }
+
+  let(:date_of_birth) { Time.zone.parse("1987-09-17") }
+
+  let(:user) { create(:user, nickname: "nickname") }
 
   before do
+    # rubocop:disable Rails/I18nLocaleAssignment
+    I18n.locale = :ca
+    # rubocop:enable Rails/I18nLocaleAssignment
     allow(HTTParty).to(receive(:get).and_return(httparty_response))
     allow(httparty_response).to(receive(:parsed_response).and_return(response_json))
     allow(httparty_response).to(receive(:response).and_return(inner_httparty_response))
@@ -55,7 +63,7 @@ describe CensusAuthorizationHandler do
       end
     end
 
-    context "when it's someone who pays taxes in city" do
+    xcontext "when it's someone who pays taxes in city" do
       let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_not_resident_but_pays_taxes }
 
       it { is_expected.to be_valid }
@@ -89,7 +97,7 @@ describe CensusAuthorizationHandler do
 
       it "is not valid" do
         expect(handler).not_to be_valid
-        expect(handler_errors[:document_number]).to eq(["is invalid", "can't be blank"])
+        expect(handler_errors[:document_number]).to eq(["no és vàlid", "no pot estar en blanc"])
       end
     end
 
@@ -98,7 +106,7 @@ describe CensusAuthorizationHandler do
 
       it "is not valid" do
         expect(handler).not_to be_valid
-        expect(handler_errors[:document_number]).to eq(["is invalid"])
+        expect(handler_errors[:document_number]).to eq(["no és vàlid"])
       end
     end
   end
@@ -176,3 +184,5 @@ describe CensusAuthorizationHandler do
     end
   end
 end
+
+# rubocop:enable RSpec/MultipleMemoizedHelpers

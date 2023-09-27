@@ -74,9 +74,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   def registered_in_town
     return if errors.any?
 
-    if !response.current_resident?
-      errors.add(:document_number, i18_error_msg(:not_in_census))
-    end
+    errors.add(:document_number, i18_error_msg(:not_in_census)) unless response.current_resident?
   end
 
   def old_enough
@@ -88,9 +86,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   def census_date_of_birth_coincidence
     return if errors.any?
 
-    if response.age != Utils.age_from_birthdate(date_of_birth)
-      errors.add(:date_of_birth, i18_error_msg(:invalid_date_of_birth))
-    end
+    errors.add(:date_of_birth, i18_error_msg(:invalid_date_of_birth)) if response.age != Utils.age_from_birthdate(date_of_birth)
   end
 
   def response
@@ -110,11 +106,13 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def log_census_request(response)
-    Rails.logger.debug """
+    Rails.logger.debug do
+      "
       [Census Service][#{user.id}][request] unique_id: #{unique_id} document_filtered: #{AttributeObfuscator.secret_attribute_hint(document_number)}
       birthdate: #{date_of_birth.try(:year)}-**-#{date_of_birth.try(:day)}
-    """
-    Rails.logger.debug "[Census Service][#{user.id}][response] status: #{response.response_code} body: #{response.obfuscated_response}"
+    "
+    end
+    Rails.logger.debug { "[Census Service][#{user.id}][response] status: #{response.response_code} body: #{response.obfuscated_response}" }
   end
 
   def i18_error_msg(error_key)
@@ -125,6 +123,8 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
     attr_reader :date_of_birth, :maximum_age, :minimum_age
 
     # Overrides the parent class method, but it still uses it to keep the base behavior
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
     def authorize
       authorization_metadata = authorization&.metadata
       raw_date_of_birth = authorization_metadata ? authorization_metadata["date_of_birth"] : nil
@@ -151,6 +151,8 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
 
       [status_code, data]
     end
+    # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/PerceivedComplexity
 
     def wrong_age_attribute
       @wrong_age_attribute ||= if maximum_age.to_i.positive? && maximum_age.to_i.years.ago > date_of_birth
@@ -173,12 +175,12 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
 
     def log_authorization_result(status_code, data)
       Rails.logger.debug "==========="
-      Rails.logger.debug "code: #{status_code}"
-      Rails.logger.debug "data: #{data.pretty_inspect}"
-      Rails.logger.debug "Date of birth: #{date_of_birth}"
-      Rails.logger.debug "Minimum age setting: #{minimum_age}"
-      Rails.logger.debug "Maximum age setting: #{maximum_age}"
-      Rails.logger.debug "Authorization: #{authorization.pretty_inspect}"
+      Rails.logger.debug { "code: #{status_code}" }
+      Rails.logger.debug { "data: #{data.pretty_inspect}" }
+      Rails.logger.debug { "Date of birth: #{date_of_birth}" }
+      Rails.logger.debug { "Minimum age setting: #{minimum_age}" }
+      Rails.logger.debug { "Maximum age setting: #{maximum_age}" }
+      Rails.logger.debug { "Authorization: #{authorization.pretty_inspect}" }
       Rails.logger.debug "==========="
     end
   end

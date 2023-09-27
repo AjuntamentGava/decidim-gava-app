@@ -62,3 +62,6 @@ es:
   errors:
     messages:
       not_in_district: El código postal no pertenece al distrito
+  census_authorization_handler:
+    not_old_enough: Menor de 16 años
+    not_in_census: No empadronado
