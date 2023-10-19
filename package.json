@@ -19,6 +19,8 @@
     "jsrender": "^1.0.13",
     "leaflet.featuregroup.subgroup": "^1.0.2",
     "marked": "^5.1.2",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^9.2.0",
     "select2": "^4.1.0-rc.0"
   },
   "version": "0.1.0",
