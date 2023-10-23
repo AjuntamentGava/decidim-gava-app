@@ -35,8 +35,6 @@ gem "whenever"
 
 gem "puma"
 
-gem "aws-sdk-s3", require: false
-
 group :development, :test do
   gem "byebug", platform: :mri
 end
@@ -57,6 +55,7 @@ group :development, :staging do
 end
 
 group :production do
+  gem "aws-sdk-s3", require: false
   gem "dalli"
   gem "fog-aws"
   gem "newrelic_rpm"
