@@ -20,9 +20,6 @@ config/application.yml
 /public/assets
 .byebug_history
 
-public/sw.js
-public/sw.js.map
-
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
