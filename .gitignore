@@ -47,6 +47,8 @@ public/uploads
 yarn-debug.log*
 .yarn-integrity
 
+sw.js.*
+
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep

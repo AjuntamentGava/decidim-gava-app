@@ -62,3 +62,6 @@ ca:
   errors:
     messages:
       not_in_district: El codi postal no pertany al districte
+  census_authorization_handler:
+    not_old_enough: Menor de 16 anys
+    not_in_census: No empadronat

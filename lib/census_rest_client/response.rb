@@ -28,7 +28,7 @@ module CensusRestClient
       return parsed_response unless parsed_response.is_a?(Array)
 
       parsed_response.map do |item|
-        item.map { |k, v| [k, AttributeObfuscator.secret_attribute_hint(v)] }.to_h
+        item.transform_values { |v| AttributeObfuscator.secret_attribute_hint(v) }
       end
     end
 
@@ -44,7 +44,7 @@ module CensusRestClient
       return if parsed_response.empty?
 
       data = parsed_response.first
-      self.age = (data["edat"] == "-" || data["edat"].to_i.zero?) ? nil : data["edat"].to_i
+      self.age = data["edat"] == "-" || (data["edat"].to_i.zero? ? nil : data["edat"].to_i)
       self.date_of_birth = data["habfecnac"].present? ? Time.zone.parse(data["habfecnac"]) : nil
     end
 
@@ -52,6 +52,7 @@ module CensusRestClient
       Rails.application.secrets.census_url
     end
 
+    # rubocop:disable Lint/DuplicateBranch
     def parsed_response
       if Rails.env.production?
         @parsed_response
@@ -59,11 +60,10 @@ module CensusRestClient
         CensusRestClient::StubbedResponseBuilder.build_resident
       elsif document_number.match?(STUB_SUCCESS_NO_BIRTHDATE_REGEX)
         CensusRestClient::StubbedResponseBuilder.build_not_resident_but_pays_taxes
-      elsif document_number.match?(STUB_FAILURE_REGEX)
-        CensusRestClient::StubbedResponseBuilder.build_ex_resident
       else
         @parsed_response
       end
     end
+    # rubocop:enable Lint/DuplicateBranch
   end
 end

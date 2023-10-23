@@ -5,7 +5,7 @@ Decidim.configure do |config|
   config.mailer_sender = Rails.application.secrets.mailer_sender
   config.maximum_attachment_size = 150.megabytes
 
-  config.available_locales = %i(ca es en)
+  config.available_locales = [:ca, :es, :en]
 
   if Rails.application.secrets.geocoder
     config.geocoder = {

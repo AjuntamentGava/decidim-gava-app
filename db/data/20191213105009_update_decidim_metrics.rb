@@ -1,5 +1,6 @@
-class UpdateDecidimMetrics < ActiveRecord::Migration[5.2]
+# frozen_string_literal: true
 
+class UpdateDecidimMetrics < ActiveRecord::Migration[5.2]
   # Source: https://github.com/decidim/decidim/blob/0.18-stable/CHANGELOG.md#0180
   def up
     days = (Date.parse(2.months.ago.to_s)..Date.yesterday).map(&:to_s)
