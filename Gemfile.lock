@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/CodiTramuntana/decidim-module-cdtb
-  revision: 664df63694f26b0f921bc74bcf6a65ce4cda5a62
-  branch: main
-  specs:
-    decidim-cdtb (0.1.2)
-      decidim (>= 0.26.2)
-      rails (>= 6)
-      ruby-progressbar
-
-GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-question_captcha
   revision: 9e8c5d28f8cd584641a4c3f95e3fabdcc0b221b2
   branch: release/0.27-stable
@@ -264,6 +254,10 @@ GEM
     decidim-budgets (0.27.4)
       decidim-comments (= 0.27.4)
       decidim-core (= 0.27.4)
+    decidim-cdtb (0.1.8)
+      decidim (>= 0.26.2)
+      rails (>= 6)
+      ruby-progressbar
     decidim-comments (0.27.4)
       decidim-core (= 0.27.4)
       redcarpet (~> 3.5, >= 3.5.1)
@@ -934,7 +928,7 @@ DEPENDENCIES
   data_migrate
   database_cleaner
   decidim (= 0.27.4)
-  decidim-cdtb!
+  decidim-cdtb (~> 0.1.8)
   decidim-decidim_awesome (~> 0.9.3)
   decidim-dev (= 0.27.4)
   decidim-question_captcha!

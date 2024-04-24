@@ -12,7 +12,7 @@ else
   gem "decidim", DECIDIM_VERSION
 end
 
-gem "decidim-cdtb", git: "https://github.com/CodiTramuntana/decidim-module-cdtb", branch: "main"
+gem "decidim-cdtb", "~> 0.1.8"
 
 # Temporal solution to prevent Psych::BadAlias
 gem "psych", "<4"
