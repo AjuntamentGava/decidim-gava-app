@@ -604,7 +604,6 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     net-ssh (6.1.0)
-    newrelic_rpm (8.5.0)
     nio4r (2.5.9)
     nokogiri (1.14.5)
       mini_portile2 (~> 2.8.0)
@@ -942,7 +941,6 @@ DEPENDENCIES
   httparty
   letter_opener_web (~> 1.4)
   listen
-  newrelic_rpm
   progressbar
   pry-remote
   psych (< 4)
