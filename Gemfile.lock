@@ -927,7 +927,7 @@ DEPENDENCIES
   data_migrate
   database_cleaner
   decidim (= 0.27.4)
-  decidim-cdtb (~> 0.1.8)
+  decidim-cdtb
   decidim-decidim_awesome (~> 0.9.3)
   decidim-dev (= 0.27.4)
   decidim-question_captcha!
