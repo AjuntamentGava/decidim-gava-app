@@ -12,7 +12,7 @@ else
   gem "decidim", DECIDIM_VERSION
 end
 
-gem "decidim-cdtb", "~> 0.1.8"
+gem "decidim-cdtb"
 
 # Temporal solution to prevent Psych::BadAlias
 gem "psych", "<4"
