@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum, this matches the default thread size of Active Record.
 #
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i
+threads_count = ENV.fetch("RAILS_MAX_THREADS", 5).to_i
 threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests, default is 3000.
 #
-port        ENV.fetch("PORT") { 3000 }
+port ENV.fetch("PORT", 3000)
 
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV.fetch("RAILS_ENV") { "development" }
+environment ENV.fetch("RAILS_ENV", "development")
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
@@ -32,19 +34,19 @@ workers ENV.fetch("WEB_CONCURRENCY") { num_workers }
 # without killing a worker however it is more error prone than rolling restarts.
 # To enable measurement based worker killing put this in your config/puma.rb:
 before_fork do
-  require 'puma_worker_killer'
+  require "puma_worker_killer"
 
   PumaWorkerKiller.config do |config|
-    config.ram           = ram_gb * 1024 # RAM in MB
-    config.frequency     = 5    # seconds
+    config.ram = ram_gb * 1024 # RAM in MB
+    config.frequency = 5 # seconds
     config.percent_usage = 0.98
     config.rolling_restart_frequency = 24.hours
     config.reaper_status_logs = true # setting this to false will not log lines like:
     # PumaWorkerKiller: Consuming 54.34765625 mb with master and 2 workers.
 
     # config.on_calculation = -> (memory) { puts "Amount of memory used #{memory}MB" }
-    config.pre_term = -> (worker) { puts "Worker #{worker.inspect} being killed" }
-    config.rolling_pre_term = -> (worker) { puts "Worker #{worker.inspect} being killed by rolling restart" }
+    config.pre_term = ->(worker) { puts "Worker #{worker.inspect} being killed" }
+    config.rolling_pre_term = ->(worker) { puts "Worker #{worker.inspect} being killed by rolling restart" }
   end
 
   PumaWorkerKiller.start
