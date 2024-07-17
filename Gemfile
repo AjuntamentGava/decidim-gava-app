@@ -34,6 +34,7 @@ gem "uglifier", ">= 1.3.0"
 gem "whenever"
 
 gem "puma"
+gem "puma_worker_killer"
 
 group :development, :test do
   gem "byebug", platform: :mri
