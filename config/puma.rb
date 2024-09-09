@@ -25,8 +25,9 @@ environment ENV.fetch("RAILS_ENV", "development")
 # processes).
 #
 ram_gb= `free -h|grep Mem|cut -d ":" -f 2|cut -d "G" -f 1`.to_i + 1
-num_workers= Rails.env.development? || Rails.env.test? ? 2 : [Etc.nprocessors, ram_gb].min
-workers ENV.fetch("WEB_CONCURRENCY") { num_workers }
+workers ENV.fetch("WEB_CONCURRENCY") {
+  num_workers= ["development", "test"].include?(ENV["RAILS_ENV"]) ? 2 : [Etc.nprocessors, ram_gb].min
+}
 # workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
 # If you're not running on a containerized platform (like Heroku or Docker)
