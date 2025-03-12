@@ -38,7 +38,7 @@ Decidim.configure do |config|
     config.maps = {
       provider: :here,
       api_key: Rails.application.secrets.maps[:api_key],
-      static: { url: "https://image.maps.ls.hereapi.com/mia/1.6/mapview" }
+      static: { url: "https://image.maps.hereapi.com/mia/v3/base/mc/overlay" }
     }
   end
 
@@ -49,6 +49,12 @@ Decidim.configure do |config|
   config.throttling_period = Rails.application.secrets.decidim[:throttling_period].to_i.minutes
 
   config.follow_http_x_forwarded_host = Rails.application.secrets.decidim[:follow_http_x_forwarded_host].present?
+
+  # Configure CSP
+  config.content_security_policies_extra = {
+    "connect-src" => %w(https://*.hereapi.com),
+    "script-src" => %w(https://www.googletagmanager.com)
+  }
 end
 
 Decidim::Verifications.register_workflow(:census_authorization_handler) do |auth|
@@ -58,5 +64,11 @@ Decidim::Verifications.register_workflow(:census_authorization_handler) do |auth
   auth.options do |options|
     options.attribute :maximum_age, type: :integer, required: false
     options.attribute :minimum_age, type: :integer, required: false
+  end
+end
+
+if Decidim.module_installed? :verifications
+  Decidim::Verifications.configure do |config|
+    config.document_types = Rails.application.secrets.dig(:verifications, :document_types).presence || %w(identification_number passport)
   end
 end

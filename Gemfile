@@ -43,8 +43,6 @@ group :development do
   gem "faker"
   gem "listen"
   gem "pry-remote"
-  gem "spring"
-  gem "spring-watcher-listen"
   gem "web-console"
 end
 

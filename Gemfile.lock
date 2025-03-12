@@ -923,8 +923,6 @@ DEPENDENCIES
   puma_worker_killer
   rack-host-redirect
   rspec-rails
-  spring
-  spring-watcher-listen
   tzinfo-data
   web-console
   whenever

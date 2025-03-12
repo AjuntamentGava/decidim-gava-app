@@ -9,6 +9,11 @@ en:
         dni: DNI
         nie: NIE
         passport: Passport
+    verifications:
+      id_documents:
+        dni: DNI
+        nie: NIE
+        passport: Passport
   census_authorization_handler:
     not_old_enough: Not old enough
     not_in_census: Not in census
