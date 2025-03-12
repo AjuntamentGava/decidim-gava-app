@@ -12,12 +12,10 @@ else
   gem "decidim", DECIDIM_VERSION
 end
 
-
-
-# gem "acts_as_textcaptcha", "~> 4.6.0"
+gem "acts_as_textcaptcha", "~> 4.6.0"
 gem "daemons"
 gem "data_migrate"
-# gem "decidim-decidim_awesome", "~> 0.9.3"
+gem "decidim-decidim_awesome", "~> 0.11.4"
 # gem "decidim-question_captcha", git: "https://github.com/OpenSourcePolitics/decidim-module-question_captcha", branch: "release/0.27-stable"
 # gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "master"
 gem "decidim-cdtb"

@@ -66,6 +66,7 @@ GEM
     acts_as_list (1.2.4)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
+    acts_as_textcaptcha (4.6.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     airbrussh (1.5.3)
@@ -278,6 +279,11 @@ GEM
     decidim-debates (0.28.5)
       decidim-comments (= 0.28.5)
       decidim-core (= 0.28.5)
+    decidim-decidim_awesome (0.11.4)
+      decidim-admin (>= 0.28.0, < 0.29)
+      decidim-core (>= 0.28.0, < 0.29)
+      deface (>= 1.5)
+      sassc (~> 2.3)
     decidim-dev (0.28.5)
       bullet (~> 7.0)
       byebug (~> 11.0)
@@ -898,6 +904,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  acts_as_textcaptcha (~> 4.6.0)
   aws-sdk-s3
   byebug
   capistrano-bundler
@@ -907,6 +914,7 @@ DEPENDENCIES
   database_cleaner
   decidim (= 0.28.5)
   decidim-cdtb
+  decidim-decidim_awesome (~> 0.11.4)
   decidim-dev (= 0.28.5)
   deface
   delayed_job_active_record
