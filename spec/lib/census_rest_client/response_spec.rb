@@ -43,7 +43,9 @@ describe CensusRestClient::Response do
     end
   end
 
-  xdescribe "pays_taxes_in_city?" do
+  describe "pays_taxes_in_city?" do
+    pending "failing test"
+
     subject { response.pays_taxes_in_city? }
 
     context "when no data" do

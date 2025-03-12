@@ -62,7 +62,9 @@ describe CensusAuthorizationHandler do
       end
     end
 
-    xcontext "when it's someone who pays taxes in city" do
+    context "when it's someone who pays taxes in city" do
+      pending "failing test"
+
       let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_not_resident_but_pays_taxes }
 
       it { is_expected.to be_valid }
