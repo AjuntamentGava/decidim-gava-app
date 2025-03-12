@@ -1,4 +1,4 @@
-# # frozen_string_literal: true
+# frozen_string_literal: true
 
 # Decidim::QuestionCaptcha.configure do |config|
 #   config.questions = {

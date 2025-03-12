@@ -17,8 +17,8 @@ gem "daemons"
 gem "data_migrate"
 gem "decidim-decidim_awesome", "~> 0.11.4"
 # gem "decidim-question_captcha", git: "https://github.com/OpenSourcePolitics/decidim-module-question_captcha", branch: "release/0.27-stable"
-gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "main"
 gem "decidim-cdtb"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "main"
 gem "deface"
 gem "delayed_job_active_record"
 gem "figjam"
@@ -33,6 +33,10 @@ gem "puma_worker_killer"
 
 group :development, :test do
   gem "byebug", platform: :mri
+  # Set versions because Property AutoCorrect errors.
+  gem "rspec-rails", "~> 6.0.4"
+  gem "rubocop-factory_bot", "2.25.1"
+  gem "rubocop-rspec", "2.26.1"
 end
 
 group :development do
@@ -57,5 +61,4 @@ end
 
 group :test do
   gem "database_cleaner"
-  gem "rspec-rails"
 end

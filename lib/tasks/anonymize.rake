@@ -8,7 +8,7 @@ require "bcrypt"
 namespace :anonymize do
   def with_progress(collection, name:)
     total = collection.count
-    progressbar = create_progress_bar(total: total)
+    progressbar = create_progress_bar(total:)
 
     puts "Anonymizing #{total} #{name}...\n"
     skip_logs do
@@ -23,7 +23,7 @@ namespace :anonymize do
     ProgressBar.create(
       progress_mark: " ",
       remainder_mark: "\u{FF65}",
-      total: total,
+      total:,
       format: "%a %e %b\u{15E7}%i %p%% %t"
     )
   end
@@ -36,7 +36,7 @@ namespace :anonymize do
   end
 
   def default_organization
-    ::Decidim::Organization.first
+    Decidim::Organization.first
   end
 
   def default_password
@@ -44,7 +44,7 @@ namespace :anonymize do
   end
 
   def default_encrypted_password
-    ::BCrypt::Password.create(default_password, cost: 1).to_s
+    BCrypt::Password.create(default_password, cost: 1).to_s
   end
 
   def default_user_attributes
@@ -69,7 +69,7 @@ namespace :anonymize do
   task all: [:users, :user_groups, :admins, :create_default_users, :update_organization_domain]
 
   task users: [:check, :environment] do
-    with_progress Decidim::User.where.not("email ~* ?", "@(gava\.cat|populate\.tools)"), name: "users" do |user|
+    with_progress Decidim::User.where.not("email ~* ?", "@(gava.cat|populate.tools)"), name: "users" do |user|
       user.update_columns(
         email: "user-#{user.id}@example.com",
         name: "Anonymized User #{user.id}",
@@ -84,7 +84,7 @@ namespace :anonymize do
         unconfirmed_email: nil
       )
 
-      Decidim::Authorization.where(user: user).find_each do |authorization|
+      Decidim::Authorization.where(user:).find_each do |authorization|
         authorization.update_columns(unique_id: authorization.id)
       end
     end
@@ -110,21 +110,21 @@ namespace :anonymize do
   end
 
   task create_default_users: [:check, :environment] do
-    ::Decidim::User.create!(default_user_attributes.merge(
-                              email: "user@decidim.dev",
-                              name: "Regular User",
-                              nickname: "regular-user",
-                              admin: false
-                            ))
+    Decidim::User.create!(default_user_attributes.merge(
+                            email: "user@decidim.dev",
+                            name: "Regular User",
+                            nickname: "regular-user",
+                            admin: false
+                          ))
 
-    ::Decidim::User.create!(default_user_attributes.merge(
-                              email: "admin@decidim.dev",
-                              name: "Admin User",
-                              nickname: "admin-user",
-                              admin: true
-                            ))
+    Decidim::User.create!(default_user_attributes.merge(
+                            email: "admin@decidim.dev",
+                            name: "Admin User",
+                            nickname: "admin-user",
+                            admin: true
+                          ))
 
-    ::Decidim::System::Admin.create!(
+    Decidim::System::Admin.create!(
       email: "system@decidim.dev",
       password: default_password,
       password_confirmation: default_password

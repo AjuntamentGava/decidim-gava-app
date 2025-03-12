@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe CensusRestClient::Response do
-  subject(:response) { described_class.new(document_number: document_number) }
+  subject(:response) { described_class.new(document_number:) }
 
   let(:document_number) { "12345678A" }
   let(:httparty_response) { double }
@@ -13,8 +13,7 @@ describe CensusRestClient::Response do
 
   before do
     allow(HTTParty).to(receive(:get).and_return(httparty_response))
-    allow(httparty_response).to(receive(:parsed_response).and_return(response_json))
-    allow(httparty_response).to(receive(:response).and_return(inner_httparty_response))
+    allow(httparty_response).to(receive_messages(parsed_response: response_json, response: inner_httparty_response))
     allow(inner_httparty_response).to(receive(:code).and_return(200))
   end
 
