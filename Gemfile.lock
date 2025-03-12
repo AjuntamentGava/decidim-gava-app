@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/mainio/decidim-module-term_customizer.git
+  revision: 9133eea57ebfc4164b640efd1ac6b9ca1628c793
+  branch: main
+  specs:
+    decidim-term_customizer (0.28.0)
+      decidim-admin (~> 0.28.0)
+      decidim-core (~> 0.28.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -916,6 +925,7 @@ DEPENDENCIES
   decidim-cdtb
   decidim-decidim_awesome (~> 0.11.4)
   decidim-dev (= 0.28.5)
+  decidim-term_customizer!
   deface
   delayed_job_active_record
   faker
