@@ -2,9 +2,9 @@
 
 source "https://rubygems.org"
 
-ruby "3.1.3"
+ruby RUBY_VERSION
 
-DECIDIM_VERSION = "0.27.4"
+DECIDIM_VERSION = "0.28.5"
 
 if ENV.fetch("USE_LOCAL_DECIDIM", nil) == "true"
   gem "decidim", path: "~/dev/decidim"
@@ -12,25 +12,22 @@ else
   gem "decidim", DECIDIM_VERSION
 end
 
-gem "decidim-cdtb", "~> 0.4.0"
 
-# Temporal solution to prevent Psych::BadAlias
-gem "psych", "<4"
 
-gem "acts_as_textcaptcha", "~> 4.6.0"
+# gem "acts_as_textcaptcha", "~> 4.6.0"
 gem "daemons"
 gem "data_migrate"
-gem "decidim-decidim_awesome", "~> 0.9.3"
-gem "decidim-question_captcha", git: "https://github.com/OpenSourcePolitics/decidim-module-question_captcha", branch: "release/0.27-stable"
-gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "master"
+# gem "decidim-decidim_awesome", "~> 0.9.3"
+# gem "decidim-question_captcha", git: "https://github.com/OpenSourcePolitics/decidim-module-question_captcha", branch: "release/0.27-stable"
+# gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "master"
+gem "decidim-cdtb"
 gem "deface"
 gem "delayed_job_active_record"
-gem "figaro", ">= 1.1.1"
+gem "figjam"
 gem "foundation-rails"
 gem "httparty"
 gem "progressbar"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem "uglifier", ">= 1.3.0"
 gem "whenever"
 
 gem "puma"
