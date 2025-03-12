@@ -43,34 +43,6 @@ describe CensusRestClient::Response do
     end
   end
 
-  describe "pays_taxes_in_city?" do
-    pending "failing test"
-
-    subject { response.pays_taxes_in_city? }
-
-    context "when no data" do
-      it { is_expected.to be false }
-    end
-
-    context "when former resident" do
-      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_ex_resident }
-
-      it { is_expected.to be false }
-    end
-
-    context "when current resident" do
-      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_resident }
-
-      it { is_expected.to be false }
-    end
-
-    context "when not resident but pays taxes in city" do
-      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_not_resident_but_pays_taxes }
-
-      it { is_expected.to be true }
-    end
-  end
-
   describe "age" do
     subject { response.age }
 
