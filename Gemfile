@@ -5,12 +5,9 @@ source "https://rubygems.org"
 ruby RUBY_VERSION
 
 DECIDIM_VERSION = "0.28.5"
+# DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim", branch: "release/0.28-stable_decidim_templates" }.freeze
 
-if ENV.fetch("USE_LOCAL_DECIDIM", nil) == "true"
-  gem "decidim", path: "~/dev/decidim"
-else
-  gem "decidim", DECIDIM_VERSION
-end
+gem "decidim", DECIDIM_VERSION
 
 gem "acts_as_textcaptcha", "~> 4.6.0"
 gem "daemons"
