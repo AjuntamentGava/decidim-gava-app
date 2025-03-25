@@ -36,6 +36,7 @@ jobs:
       DB_PASSWORD: postgres
       DB_HOST: localhost
       SECRET_KEY_BASE: "secret_key_base"
+      VERIFICATIONS_DOCUMENT_TYPES: "dni,nie,passport"
 
     steps:
       - uses: actions/checkout@v2.0.0

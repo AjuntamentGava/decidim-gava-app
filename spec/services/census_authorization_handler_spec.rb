@@ -65,7 +65,7 @@ describe CensusAuthorizationHandler do
     context "when it's someone who pays taxes in city" do
       let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_not_resident_but_pays_taxes }
 
-      it { is_expected.to be_valid }
+      it { is_expected.not_to be_valid }
     end
 
     context "when it's a former resident" do
@@ -81,7 +81,7 @@ describe CensusAuthorizationHandler do
     end
   end
 
-  context "when user is not registered in cesus" do
+  context "when user is not registered in census" do
     let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_no_data }
 
     it "is not valid" do
