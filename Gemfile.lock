@@ -228,7 +228,7 @@ GEM
     decidim-budgets (0.28.5)
       decidim-comments (= 0.28.5)
       decidim-core (= 0.28.5)
-    decidim-cdtb (0.4.0)
+    decidim-cdtb (0.4.1)
       decidim (>= 0.27.0)
       rails (>= 6)
       ruby-progressbar
@@ -919,7 +919,7 @@ DEPENDENCIES
   data_migrate
   database_cleaner
   decidim (= 0.28.5)
-  decidim-cdtb
+  decidim-cdtb (~> 0.4.1)
   decidim-decidim_awesome (~> 0.11.4)
   decidim-dev (= 0.28.5)
   decidim-term_customizer!
