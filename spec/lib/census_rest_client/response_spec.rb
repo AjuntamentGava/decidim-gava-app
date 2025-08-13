@@ -39,7 +39,7 @@ describe CensusRestClient::Response do
     context "when not resident but pays taxes in city" do
       let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_not_resident_but_pays_taxes }
 
-      it { is_expected.to be false }
+      it { is_expected.to be true }
     end
   end
 
@@ -67,7 +67,7 @@ describe CensusRestClient::Response do
     context "when not resident but pays taxes in city" do
       let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_not_resident_but_pays_taxes }
 
-      it { is_expected.to be_nil }
+      it { is_expected.to eq(35) }
     end
   end
 
