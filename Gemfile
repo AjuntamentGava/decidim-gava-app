@@ -5,7 +5,6 @@ source "https://rubygems.org"
 ruby RUBY_VERSION
 
 DECIDIM_VERSION = "0.28.5"
-# DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim", branch: "release/0.28-stable_decidim_templates" }.freeze
 
 gem "decidim", DECIDIM_VERSION
 
