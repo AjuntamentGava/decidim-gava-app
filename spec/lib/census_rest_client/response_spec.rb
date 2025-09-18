@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe CensusRestClient::Response do
-  subject(:response) { described_class.new(document_number: document_number) }
+  subject(:response) { described_class.new(document_number:) }
 
   let(:document_number) { "12345678A" }
   let(:httparty_response) { double }
@@ -13,8 +13,7 @@ describe CensusRestClient::Response do
 
   before do
     allow(HTTParty).to(receive(:get).and_return(httparty_response))
-    allow(httparty_response).to(receive(:parsed_response).and_return(response_json))
-    allow(httparty_response).to(receive(:response).and_return(inner_httparty_response))
+    allow(httparty_response).to(receive_messages(parsed_response: response_json, response: inner_httparty_response))
     allow(inner_httparty_response).to(receive(:code).and_return(200))
   end
 
@@ -35,32 +34,6 @@ describe CensusRestClient::Response do
       let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_resident }
 
       it { is_expected.to be true }
-    end
-
-    context "when not resident but pays taxes in city" do
-      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_not_resident_but_pays_taxes }
-
-      it { is_expected.to be false }
-    end
-  end
-
-  xdescribe "pays_taxes_in_city?" do
-    subject { response.pays_taxes_in_city? }
-
-    context "when no data" do
-      it { is_expected.to be false }
-    end
-
-    context "when former resident" do
-      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_ex_resident }
-
-      it { is_expected.to be false }
-    end
-
-    context "when current resident" do
-      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_resident }
-
-      it { is_expected.to be false }
     end
 
     context "when not resident but pays taxes in city" do
@@ -94,7 +67,7 @@ describe CensusRestClient::Response do
     context "when not resident but pays taxes in city" do
       let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_not_resident_but_pays_taxes }
 
-      it { is_expected.to be_nil }
+      it { is_expected.to eq(35) }
     end
   end
 

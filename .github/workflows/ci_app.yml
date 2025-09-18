@@ -36,6 +36,7 @@ jobs:
       DB_PASSWORD: postgres
       DB_HOST: localhost
       SECRET_KEY_BASE: "secret_key_base"
+      VERIFICATIONS_DOCUMENT_TYPES: "dni,nie,passport"
 
     steps:
       - uses: actions/checkout@v2.0.0
@@ -65,7 +66,7 @@ jobs:
           retry_on: error
           command: bundle install --jobs 4 --retry 3
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'

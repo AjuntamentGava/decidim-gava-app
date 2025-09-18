@@ -50,6 +50,11 @@ ca:
         dni: DNI
         nie: NIE
         passport: Passaport
+    verifications:
+      id_documents:
+        dni: DNI
+        nie: NIE
+        passport: Passaport
     devise:
       registrations:
         new:

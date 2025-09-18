@@ -16,9 +16,9 @@ describe CensusAuthorizationHandler do
   end
   let(:params) do
     {
-      document_number: document_number,
-      date_of_birth: date_of_birth,
-      user: user
+      document_number:,
+      date_of_birth:,
+      user:
     }
   end
   let(:httparty_response) { double }
@@ -37,8 +37,7 @@ describe CensusAuthorizationHandler do
     I18n.locale = :ca
     # rubocop:enable Rails/I18nLocaleAssignment
     allow(HTTParty).to(receive(:get).and_return(httparty_response))
-    allow(httparty_response).to(receive(:parsed_response).and_return(response_json))
-    allow(httparty_response).to(receive(:response).and_return(inner_httparty_response))
+    allow(httparty_response).to(receive_messages(parsed_response: response_json, response: inner_httparty_response))
     allow(inner_httparty_response).to(receive(:code).and_return(200))
   end
 
@@ -63,12 +62,6 @@ describe CensusAuthorizationHandler do
       end
     end
 
-    xcontext "when it's someone who pays taxes in city" do
-      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_not_resident_but_pays_taxes }
-
-      it { is_expected.to be_valid }
-    end
-
     context "when it's a former resident" do
       let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_ex_resident }
 
@@ -76,13 +69,13 @@ describe CensusAuthorizationHandler do
     end
 
     context "when everyghint is OK" do
-      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_resident(date_of_birth: date_of_birth) }
+      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_resident(date_of_birth:) }
 
       it { is_expected.to be_valid }
     end
   end
 
-  context "when user is not registered in cesus" do
+  context "when user is not registered in census" do
     let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_no_data }
 
     it "is not valid" do
@@ -168,7 +161,7 @@ describe CensusAuthorizationHandler do
 
   describe "metadata" do
     context "when date_of_birth is required" do
-      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_resident(date_of_birth: date_of_birth) }
+      let(:response_json) { CensusRestClient::StubbedResponseBuilder.build_resident(date_of_birth:) }
 
       it "includes the date of birth" do
         expect(subject.metadata).to include(date_of_birth: date_of_birth.iso8601)

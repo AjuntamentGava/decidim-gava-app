@@ -48,7 +48,10 @@ yarn-debug.log*
 .yarn-integrity
 
 sw.js.*
+sw.js
 
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
+
+tailwind.config.js

@@ -27,6 +27,7 @@ default: &default
   # GeoCoder configuration (developer.here.com)
   GEOCODER_LOOKUP_API_KEY: "here_api_key"
   SECRET_KEY_BASE: "must be different for each environment; run bin/rake secret and copy here"
+  VERIFICATIONS_DOCUMENT_TYPES: "dni,nie,passport"
 
 development:
   <<: *default

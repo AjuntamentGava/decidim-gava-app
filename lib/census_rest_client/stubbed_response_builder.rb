@@ -32,7 +32,7 @@ module CensusRestClient
     end
 
     def self.build_not_resident_but_pays_taxes
-      [base_attrs.merge("edat" => 0, "barri" => "ANGELA ROCA-CAN SERRA BALET")]
+      [base_attrs.merge("edat" => 35, "barri" => "ANGELA ROCA-CAN SERRA BALET")]
     end
 
     def self.base_attrs

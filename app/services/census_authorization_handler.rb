@@ -5,10 +5,10 @@ require "digest/md5"
 class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   include ActionView::Helpers::SanitizeHelper
 
-  DNI_REGEXP = /\d{8}[a-zA-Z]/.freeze
-  NIE_REGEXP = /[a-zA-Z]\d{7}[a-zA-Z]/.freeze
-  DOCUMENT_REGEXP_PROD = /\A(#{DNI_REGEXP}|#{NIE_REGEXP})\z/.freeze
-  DOCUMENT_REGEXP_TEST = /\A(#{DNI_REGEXP}|#{NIE_REGEXP})(\+|-|!)?\z/.freeze
+  DNI_REGEXP = /\d{8}[a-zA-Z]/
+  NIE_REGEXP = /[a-zA-Z]\d{7}[a-zA-Z]/
+  DOCUMENT_REGEXP_PROD = /\A(#{DNI_REGEXP}|#{NIE_REGEXP})\z/
+  DOCUMENT_REGEXP_TEST = /\A(#{DNI_REGEXP}|#{NIE_REGEXP})(\+|-|!)?\z/
 
   attribute :document_number, String
   attribute :date_of_birth, Date
@@ -93,7 +93,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
     @response = begin
       return if errors.any?
 
-      @response = CensusRestClient::Response.new(document_number: document_number)
+      @response = CensusRestClient::Response.new(document_number:)
 
       log_census_request(@response)
 

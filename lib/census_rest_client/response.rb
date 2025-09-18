@@ -2,9 +2,9 @@
 
 module CensusRestClient
   class Response
-    STUB_SUCCESS_REGEX = /\+$/.freeze
-    STUB_SUCCESS_NO_BIRTHDATE_REGEX = /-$/.freeze
-    STUB_FAILURE_REGEX = /!$/.freeze
+    STUB_SUCCESS_REGEX = /\+$/
+    STUB_SUCCESS_NO_BIRTHDATE_REGEX = /-$/
+    STUB_FAILURE_REGEX = /!$/
 
     attr_accessor(
       :document_number,
