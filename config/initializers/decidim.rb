@@ -37,7 +37,7 @@ Decidim.configure do |config|
   if Rails.application.secrets.maps
     config.maps = {
       provider: :here,
-      api_key: Rails.application.secrets.maps[:api_key],
+      api_key: Rails.application.secrets.maps[:here_api_key],
       static: { url: "https://image.maps.hereapi.com/mia/v3/base/mc/overlay" }
     }
   end
@@ -52,9 +52,10 @@ Decidim.configure do |config|
 
   # Configure CSP
   config.content_security_policies_extra = {
-    "connect-src" => %w(https://*.here.com https://*.hereapi.com),
-    "img-src" => %w(https://*.here.com https://*.hereapi.com),
-    "script-src" => %w(https://www.googletagmanager.com)
+    "connect-src" => %w(https://*.here.com https://*.hereapi.com https://*.s3.eu-west-3.amazonaws.com),
+    "img-src" => %w(https://*.here.com https://*.hereapi.com https://*.s3.eu-west-3.amazonaws.com),
+    "script-src" => %w(https://www.googletagmanager.com),
+    "frame-src" => %w(https://*.s3.eu-west-3.amazonaws.com)
   }
 end
 
