@@ -37,7 +37,7 @@ Decidim.configure do |config|
   if Rails.application.secrets.maps
     config.maps = {
       provider: :here,
-      api_key: Rails.application.secrets.maps[:api_key],
+      api_key: Rails.application.secrets.maps[:here_api_key],
       static: { url: "https://image.maps.hereapi.com/mia/v3/base/mc/overlay" }
     }
   end
