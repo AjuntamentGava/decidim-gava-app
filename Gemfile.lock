@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mainio/decidim-module-term_customizer.git
-  revision: 9133eea57ebfc4164b640efd1ac6b9ca1628c793
+  revision: 32b47529c192071cfc4caca5fa203ee9e8fd2c6b
   branch: main
   specs:
     decidim-term_customizer (0.28.0)
