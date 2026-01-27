@@ -37,23 +37,25 @@ workers ENV.fetch("WEB_CONCURRENCY") {
 # when you're over that limit. It may allow you to go for longer periods of time
 # without killing a worker however it is more error prone than rolling restarts.
 # To enable measurement based worker killing put this in your config/puma.rb:
-before_fork do
-  require "puma_worker_killer"
+if %w(production staging).include?(ENV.fetch("RAILS_ENV", nil))
+  before_fork do
+    require "puma_worker_killer"
 
-  PumaWorkerKiller.config do |config|
-    config.ram = ram_gb * 1024 # RAM in MB
-    config.frequency = 5 # seconds
-    config.percent_usage = 0.98
-    config.rolling_restart_frequency = 24.hours
-    config.reaper_status_logs = true # setting this to false will not log lines like:
-    # PumaWorkerKiller: Consuming 54.34765625 mb with master and 2 workers.
+    PumaWorkerKiller.config do |config|
+      config.ram = ram_gb * 1024 # RAM in MB
+      config.frequency = 5 # seconds
+      config.percent_usage = 0.98
+      config.rolling_restart_frequency = 24.hours
+      config.reaper_status_logs = true # setting this to false will not log lines like:
+      # PumaWorkerKiller: Consuming 54.34765625 mb with master and 2 workers.
 
-    # config.on_calculation = -> (memory) { puts "Amount of memory used #{memory}MB" }
-    config.pre_term = ->(worker) { puts "Worker #{worker.inspect} being killed" }
-    config.rolling_pre_term = ->(worker) { puts "Worker #{worker.inspect} being killed by rolling restart" }
+      # config.on_calculation = -> (memory) { puts "Amount of memory used #{memory}MB" }
+      config.pre_term = ->(worker) { puts "Worker #{worker.inspect} being killed" }
+      config.rolling_pre_term = ->(worker) { puts "Worker #{worker.inspect} being killed by rolling restart" }
+    end
+
+    PumaWorkerKiller.start
   end
-
-  PumaWorkerKiller.start
 end
 
 # Use the `preload_app!` method when specifying a `workers` number.
