@@ -4,15 +4,15 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = "0.28.6"
+DECIDIM_VERSION = "0.29.7"
 
 gem "decidim", DECIDIM_VERSION
 
 gem "acts_as_textcaptcha", "~> 4.6.0"
 gem "daemons"
 gem "data_migrate"
-gem "decidim-cdtb", "~> 0.5.3"
-gem "decidim-decidim_awesome", "~> 0.11.4"
+gem "decidim-cdtb", "~> 0.5.5"
+gem "decidim-decidim_awesome", "~> 0.12.0"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "main"
 gem "deface"
 gem "delayed_job_active_record"
@@ -24,14 +24,9 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "whenever"
 
 gem "puma"
-gem "puma_worker_killer"
 
 group :development, :test do
   gem "byebug", platform: :mri
-  # Set versions because Property AutoCorrect errors.
-  gem "rspec-rails", "~> 6.0.4"
-  gem "rubocop-factory_bot", "2.25.1"
-  gem "rubocop-rspec", "2.26.1"
 end
 
 group :development do
@@ -52,6 +47,10 @@ group :production do
   gem "dalli"
   gem "fog-aws"
   gem "rack-host-redirect"
+end
+
+group :production, :staging do
+  gem "puma_worker_killer"
 end
 
 group :test do

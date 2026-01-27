@@ -31,7 +31,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   validate :census_date_of_birth_coincidence
 
   def self.from_params(params, additional_params = {})
-    instance = super(params, additional_params)
+    instance = super
 
     params_hash = hash_from(params)
 
