@@ -4,7 +4,7 @@ This is the opensource code repository for "decidim-gava", based on [Decidim](ht
 
 ## Development environment setup
 
-- Ruby version: 3.1.7
+- Ruby version: 3.2.6
 - Node version: 18.17.1
 
 Copy config files:
