@@ -989,7 +989,7 @@ DEPENDENCIES
   decidim-dev (= 0.29.7)
   decidim-term_customizer!
   deface
-  delayed_job_active_record
+  delayed_job_active_record (~> 4.1.0)
   faker
   figjam
   fog-aws
