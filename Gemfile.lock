@@ -386,10 +386,8 @@ GEM
       polyglot
       railties (>= 5.2)
       rainbow (>= 2.1.0)
-    delayed_job (4.2.0)
+    delayed_job (4.1.13)
       activesupport (>= 3.0, < 9.0)
-      benchmark
-      logger
     delayed_job_active_record (4.1.11)
       activerecord (>= 3.0, < 9.0)
       delayed_job (>= 3.0, < 5)
@@ -989,6 +987,7 @@ DEPENDENCIES
   decidim-dev (= 0.29.7)
   decidim-term_customizer!
   deface
+  delayed_job (~> 4.1.0)
   delayed_job_active_record (~> 4.1.0)
   faker
   figjam

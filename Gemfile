@@ -15,6 +15,8 @@ gem "decidim-cdtb", "~> 0.5.5"
 gem "decidim-decidim_awesome", "~> 0.12.0"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "main"
 gem "deface"
+# Set versions because NameError: uninitialized constant ActiveJob::QueueAdapters::AbstractAdapter
+gem "delayed_job", "~> 4.1.0"
 gem "delayed_job_active_record", "~> 4.1.0"
 gem "figjam"
 gem "foundation-rails"
