@@ -14,7 +14,7 @@ module Reports
           supports = p.votes.where(created_at: from_date..to_date)
           supports_impersonated = supports.select { |s| Decidim::ImpersonationLog.exists?(decidim_user_id: s.decidim_author_id) }.map(&:decidim_author_id).sort.uniq.size
           supports_verified = supports.reject { |s| Decidim::ImpersonationLog.exists?(decidim_user_id: s.decidim_author_id) }.map(&:decidim_author_id).sort.uniq.size
-    
+
           csv << [date, to_date.strftime("%Y-%m-%d"), p.reference, p.title["ca"] || p.title["es"], supports_impersonated, supports_verified]
         end
       end
