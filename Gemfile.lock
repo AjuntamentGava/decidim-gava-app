@@ -1,4 +1,16 @@
 GIT
+  remote: https://github.com/decidim-ice/decidim-module-decidim_awesome.git
+  revision: 41bc90e832bb01a8771a79d08d63a2f06c92fcaa
+  branch: release/0.29-stable
+  specs:
+    decidim-decidim_awesome (0.12.6)
+      active_hashcash (~> 0.4.0)
+      decidim-admin (>= 0.29.1, < 0.30)
+      decidim-core (>= 0.29.1, < 0.30)
+      deface (>= 1.5)
+      sassc (~> 2.3)
+
+GIT
   remote: https://github.com/mainio/decidim-module-term_customizer.git
   revision: 36d4530922ad033915948132f623d922e6994f4c
   branch: main
@@ -301,12 +313,6 @@ GEM
     decidim-debates (0.29.7)
       decidim-comments (= 0.29.7)
       decidim-core (= 0.29.7)
-    decidim-decidim_awesome (0.12.6)
-      active_hashcash (~> 0.4.0)
-      decidim-admin (>= 0.29.1, < 0.30)
-      decidim-core (>= 0.29.1, < 0.30)
-      deface (>= 1.5)
-      sassc (~> 2.3)
     decidim-dev (0.29.7)
       bullet (~> 7.1.6)
       byebug (~> 11.0)
@@ -983,7 +989,7 @@ DEPENDENCIES
   database_cleaner
   decidim (= 0.29.7)
   decidim-cdtb (~> 0.5.5)
-  decidim-decidim_awesome (~> 0.12.0)
+  decidim-decidim_awesome!
   decidim-dev (= 0.29.7)
   decidim-term_customizer!
   deface
