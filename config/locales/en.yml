@@ -3,6 +3,10 @@ en:
     accessibility:
       front_page_link: link home
     authorization_handlers:
+      admin:
+        census_authorization_handler:
+          help:
+            - Direct verification method integrated with the municipal census.
       census_authorization_handler: Census authorization
     census_authorization_handler:
       document_types:
