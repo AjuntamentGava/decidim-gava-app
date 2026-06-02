@@ -24,7 +24,7 @@ environment ENV.fetch("RAILS_ENV", "development")
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-ram_gb= `free -h|grep Mem|cut -d ":" -f 2|cut -d "G" -f 1`.to_i + 1
+# ram_gb= `free -h|grep Mem|cut -d ":" -f 2|cut -d "G" -f 1`.to_i + 1
 workers ENV.fetch("WEB_CONCURRENCY") {
   # rubocop: disable Lint/UselessAssignment
   num_workers= %w(development test).include?(ENV.fetch("RAILS_ENV", nil)) ? 2 : [Etc.nprocessors, ram_gb].min
@@ -42,10 +42,10 @@ if %w(production staging).include?(ENV.fetch("RAILS_ENV", nil))
     require "puma_worker_killer"
 
     PumaWorkerKiller.config do |config|
-      config.ram = ram_gb * 1024 # RAM in MB
+      config.ram = 1200 # RAM in MB
       config.frequency = 5 # seconds
-      config.percent_usage = 0.98
-      config.rolling_restart_frequency = 24.hours
+      config.percent_usage = 0.90
+      config.rolling_restart_frequency = 6.hours
       config.reaper_status_logs = true # setting this to false will not log lines like:
       # PumaWorkerKiller: Consuming 54.34765625 mb with master and 2 workers.
 
