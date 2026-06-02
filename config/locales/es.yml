@@ -26,6 +26,10 @@ es:
       new:
         authorize: Verificar
     authorization_handlers:
+      admin:
+        census_authorization_handler:
+          help:
+            - Método de verificación directo integrado con el padrón municipal del ayuntamiento.
       decidim:
         verifications:
           authorizations:

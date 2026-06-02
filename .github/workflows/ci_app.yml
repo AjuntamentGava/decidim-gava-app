@@ -9,8 +9,8 @@ on:
   pull_request:
 
 env:
-  RUBY_VERSION: 3.1.7
-  NODE_VERSION: 16.9.1
+  RUBY_VERSION: 3.2.6
+  NODE_VERSION: 18.17.1
 
 jobs:
   test:
@@ -71,6 +71,10 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
       - run: npm install
+
+      - name: Create empty application.yml
+        run: touch config/application.yml
+
       - run: bundle exec rake db:test:prepare
         name: Setup database
       - run: bundle exec rspec
