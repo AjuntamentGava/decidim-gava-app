@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = "0.29.7"
+DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim", branch: "backport/0.29/fix-display-of-embeded-images--16308" }.freeze
 
 gem "decidim", DECIDIM_VERSION
 
