@@ -37,6 +37,7 @@ workers ENV.fetch("WEB_CONCURRENCY") {
 # without killing a worker however it is more error prone than rolling restarts.
 # To enable measurement based worker killing put this in your config/puma.rb:
 
+ram_gb = `free -h|grep Mem|cut -d ":" -f 2|cut -d "G" -f 1`.to_i + 1
 # used: 1GB for the os + 1GB for clamav
 used_ram_gb = 1 + 1
 available_ram_gb = ram_gb.to_f - used_ram_gb
