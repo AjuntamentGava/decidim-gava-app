@@ -24,7 +24,6 @@ environment ENV.fetch("RAILS_ENV", "development")
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-ram_gb= `free -h|grep Mem|cut -d ":" -f 2|cut -d "G" -f 1`.to_i + 1
 workers ENV.fetch("WEB_CONCURRENCY") {
   # rubocop: disable Lint/UselessAssignment
   num_workers= %w(development test).include?(ENV.fetch("RAILS_ENV", nil)) ? 2 : [Etc.nprocessors, ram_gb].min
@@ -37,15 +36,20 @@ workers ENV.fetch("WEB_CONCURRENCY") {
 # when you're over that limit. It may allow you to go for longer periods of time
 # without killing a worker however it is more error prone than rolling restarts.
 # To enable measurement based worker killing put this in your config/puma.rb:
+
+ram_gb = `free -h|grep Mem|cut -d ":" -f 2|cut -d "G" -f 1`.to_i + 1
+# used: 1GB for the os + 2GB for clamav
+used_ram_gb = 1 + 2
+available_ram_gb = ram_gb.to_f - used_ram_gb
 if %w(production staging).include?(ENV.fetch("RAILS_ENV", nil))
   before_fork do
     require "puma_worker_killer"
 
     PumaWorkerKiller.config do |config|
-      config.ram = ram_gb * 1024 # RAM in MB
+      config.ram = available_ram_gb * 1024 # RAM in MB
       config.frequency = 5 # seconds
-      config.percent_usage = 0.98
-      config.rolling_restart_frequency = 24.hours
+      config.percent_usage = 0.90
+      config.rolling_restart_frequency = 6.hours
       config.reaper_status_logs = true # setting this to false will not log lines like:
       # PumaWorkerKiller: Consuming 54.34765625 mb with master and 2 workers.
 
