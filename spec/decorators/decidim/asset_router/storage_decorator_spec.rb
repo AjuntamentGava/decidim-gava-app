@@ -31,7 +31,10 @@ describe Decidim::AssetRouter::Storage do
     end
 
     it "generates the same URL every time" do
-      expect(router.url).to eq(router.url)
+      first_url = router.url
+      second_url = router.url
+
+      expect(second_url).to eq(first_url)
     end
   end
 end
