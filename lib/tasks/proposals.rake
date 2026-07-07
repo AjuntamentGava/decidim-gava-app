@@ -6,7 +6,7 @@ namespace :proposals do
     decidim_component_id = ENV.fetch("COMPONENT_ID", 190).to_i
     dates = ENV.fetch("DATES", "2022-06-08,2022-06-15,2022-06-22,2022-06-29").split(",").map(&:strip)
 
-    ps = Decidim::Proposals::Proposal.where(decidim_component_id: decidim_component_id)
+    ps = Decidim::Proposals::Proposal.where(decidim_component_id:)
     filename = "decidim_supports_#{decidim_component_id}.csv"
 
     CSV.open(filename, "wb") do |csv|
@@ -32,7 +32,7 @@ namespace :proposals do
     decidim_component_id = ENV.fetch("COMPONENT_ID", 190).to_i
     dates = ENV.fetch("DATES", "2022-06-08,2022-06-15,2022-06-22,2022-06-29").split(",").map(&:strip)
 
-    ps = Decidim::Proposals::Proposal.where(decidim_component_id: decidim_component_id)
+    ps = Decidim::Proposals::Proposal.where(decidim_component_id:)
     filename = "decidim_supports_#{decidim_component_id}_summary.csv"
 
     CSV.open(filename, "wb") do |csv|
