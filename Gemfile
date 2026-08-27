@@ -11,7 +11,7 @@ gem "decidim", DECIDIM_VERSION
 gem "acts_as_textcaptcha", "~> 4.6.0"
 gem "daemons"
 gem "data_migrate"
-gem "decidim-cdtb", "~> 0.5.5"
+gem "decidim-cdtb", "~> 0.6.0"
 gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome.git", branch: "release/0.29-stable"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "main"
 gem "deface"
