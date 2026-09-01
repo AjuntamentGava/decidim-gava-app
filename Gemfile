@@ -21,9 +21,7 @@ gem "delayed_job_active_record", "~> 4.1.0"
 
 gem "dotenv"
 
-gem "foundation-rails"
 gem "httparty"
-gem "progressbar"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "whenever"
 
@@ -36,7 +34,6 @@ end
 group :development do
   gem "capistrano-bundler"
   gem "decidim-dev", DECIDIM_VERSION
-  gem "faker"
   gem "listen"
   gem "pry-remote"
   gem "web-console"
@@ -55,8 +52,4 @@ end
 
 group :production, :staging do
   gem "puma_worker_killer"
-end
-
-group :test do
-  gem "database_cleaner"
 end
