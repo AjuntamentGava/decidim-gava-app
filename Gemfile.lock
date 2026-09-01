@@ -181,6 +181,15 @@ GIT
     decidim-verifications (0.30.9)
       decidim-core (= 0.30.9)
 
+GIT
+  remote: https://github.com/mainio/decidim-module-term_customizer.git
+  revision: b2c66134265853cdd7930780c892b295bc753cdd
+  branch: release/0.30-stable
+  specs:
+    decidim-term_customizer (0.30.0)
+      decidim-admin (~> 0.30.0)
+      decidim-core (~> 0.30.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -1022,6 +1031,7 @@ DEPENDENCIES
   decidim-cdtb (~> 0.6.0)
   decidim-decidim_awesome (~> 0.13.0)
   decidim-dev!
+  decidim-term_customizer!
   deface
   delayed_job (~> 4.1.0)
   delayed_job_active_record (~> 4.1.0)

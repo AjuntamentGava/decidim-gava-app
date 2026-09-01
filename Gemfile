@@ -13,7 +13,7 @@ gem "daemons"
 gem "data_migrate"
 gem "decidim-cdtb", "~> 0.6.0"
 gem "decidim-decidim_awesome", "~> 0.13.0"
-# gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "main"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "release/0.30-stable"
 gem "deface"
 # Set versions because NameError: uninitialized constant ActiveJob::QueueAdapters::AbstractAdapter
 gem "delayed_job", "~> 4.1.0"
