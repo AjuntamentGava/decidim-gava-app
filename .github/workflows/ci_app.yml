@@ -76,7 +76,7 @@ jobs:
       - name: Generate test_app
         run: |
           RAILS_ENV=test bundle exec rails db:create
-          PGPASSWORD=${{ env.DB_PASSWORD }} psql -h ${{ env.DB_HOST }} -U ${{ env.DB_USERNAME }} -d ${{ env.DB_DATABASE }} -c "CREATE EXTENSION IF NOT EXISTS pgcrypto;"
+          PGPASSWORD=${{ env.DB_PASSWORD }} psql -h ${{ env.DB_HOST }} -U ${{ env.DB_USERNAME }} -d ${{ env.DB_TEST_DATABASE }} -c "CREATE EXTENSION IF NOT EXISTS pgcrypto;"
           RAILS_ENV=test bundle exec rails db:migrate
       - run: bundle exec rspec
         name: Run specs
