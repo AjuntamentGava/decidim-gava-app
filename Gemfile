@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim", branch: "release/0.29-stable" }.freeze
+DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim", branch: "release/0.30-stable" }.freeze
 
 gem "decidim", DECIDIM_VERSION
 
@@ -12,8 +12,8 @@ gem "acts_as_textcaptcha", "~> 4.6.0"
 gem "daemons"
 gem "data_migrate"
 gem "decidim-cdtb", "~> 0.6.0"
-gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome.git", branch: "release/0.29-stable"
-gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "main"
+# gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome.git", branch: "release/0.29-stable"
+# gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "main"
 gem "deface"
 # Set versions because NameError: uninitialized constant ActiveJob::QueueAdapters::AbstractAdapter
 gem "delayed_job", "~> 4.1.0"

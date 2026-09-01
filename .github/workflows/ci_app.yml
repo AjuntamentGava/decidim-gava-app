@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  RUBY_VERSION: 3.2.6
+  RUBY_VERSION: 3.3.4
   NODE_VERSION: 18.17.1
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:11
+        image: postgres:14
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
@@ -72,10 +72,10 @@ jobs:
           cache: 'npm'
       - run: npm install
 
-      - name: Create empty application.yml
-        run: touch config/application.yml
-
-      - run: bundle exec rake db:test:prepare
-        name: Setup database
+      - name: Generate test_app
+        run: |
+          RAILS_ENV=test bundle exec rails db:create
+          PGPASSWORD=${{ env.DB_PASSWORD }} psql -h ${{ env.DB_HOST }} -U ${{ env.DB_USERNAME }} -d ${{ env.DB_DATABASE }} -c "CREATE EXTENSION IF NOT EXISTS pgcrypto;"
+          RAILS_ENV=test bundle exec rails db:migrate
       - run: bundle exec rspec
         name: Run specs
