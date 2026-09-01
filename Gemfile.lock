@@ -230,6 +230,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_hashcash (0.4.0)
+      rails (>= 5.2.0)
     active_link_to (1.0.5)
       actionpack
       addressable
@@ -371,6 +373,12 @@ GEM
       decidim (>= 0.29.0)
       rails (>= 6)
       ruby-progressbar
+    decidim-decidim_awesome (0.13.2)
+      active_hashcash (~> 0.4.0)
+      decidim-admin (>= 0.30.0, < 0.31)
+      decidim-core (>= 0.30.0, < 0.31)
+      deface (>= 1.5)
+      sassc (~> 2.3)
     declarative-builder (0.2.0)
       trailblazer-option (~> 0.1.0)
     declarative-option (0.1.0)
@@ -898,6 +906,8 @@ GEM
       google-protobuf (~> 4.31)
     sass-embedded (1.103.1-x86_64-linux-musl)
       google-protobuf (~> 4.31)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     securerandom (0.4.1)
     selenium-webdriver (4.40.0)
       base64 (~> 0.2)
@@ -1010,6 +1020,7 @@ DEPENDENCIES
   data_migrate
   decidim!
   decidim-cdtb (~> 0.6.0)
+  decidim-decidim_awesome (~> 0.13.0)
   decidim-dev!
   deface
   delayed_job (~> 4.1.0)
