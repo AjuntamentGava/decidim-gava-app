@@ -416,6 +416,7 @@ GEM
     doorkeeper (5.9.6)
       railties (>= 5)
     doorkeeper-i18n (4.0.1)
+    dotenv (3.2.0)
     drb (2.2.3)
     erb_lint (0.8.0)
       activesupport
@@ -456,8 +457,6 @@ GEM
     ffi (1.17.4-x86_64-linux-gnu)
     ffi (1.17.4-x86_64-linux-musl)
     fiber-storage (1.0.1)
-    figjam (3.0.1)
-      thor (>= 0.14.0, < 2)
     file_validators (3.0.0)
       activemodel (>= 3.2)
       mime-types (>= 1.0)
@@ -1043,8 +1042,8 @@ DEPENDENCIES
   deface
   delayed_job (~> 4.1.0)
   delayed_job_active_record (~> 4.1.0)
+  dotenv
   faker
-  figjam
   fog-aws
   foundation-rails
   httparty

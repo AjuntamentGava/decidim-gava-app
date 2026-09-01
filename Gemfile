@@ -18,7 +18,9 @@ gem "deface"
 # Set versions because NameError: uninitialized constant ActiveJob::QueueAdapters::AbstractAdapter
 gem "delayed_job", "~> 4.1.0"
 gem "delayed_job_active_record", "~> 4.1.0"
-gem "figjam"
+
+gem "dotenv"
+
 gem "foundation-rails"
 gem "httparty"
 gem "progressbar"
