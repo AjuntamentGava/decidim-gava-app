@@ -35,7 +35,7 @@ jobs:
       DB_PASSWORD: postgres
       DB_HOST: localhost
       SECRET_KEY_BASE: "secret_key_base"
-
+      ENABLE_EPHEMERAL_CENSUS_AUTHORIZATION_HANDLER: true
 
     steps:
       - uses: actions/checkout@v2.0.0
