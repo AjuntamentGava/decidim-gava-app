@@ -51,3 +51,7 @@ module Decidim
     end
   end
 end
+
+Rails.application.config.to_prepare do
+  Decidim::Admin::CopyAdminsAsFollowers.decorate
+end
