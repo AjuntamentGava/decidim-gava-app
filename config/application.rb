@@ -26,5 +26,12 @@ module DecidimBarcelona
     ]
     config.autoload_paths += required_files
     config.eager_load_paths += required_files
+
+    # Make decorators available
+    config.to_prepare do
+      Dir.glob(Rails.root.join("app/decorators/**/*_decorator*.rb").to_s).each do |c|
+        require_dependency(c)
+      end
+    end
   end
 end
