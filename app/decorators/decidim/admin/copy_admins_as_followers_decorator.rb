@@ -2,7 +2,7 @@
 
 module Decidim
   module Admin
-    module CopyAdminsAsFollowers
+    module CopyAdminsAsFollowersDecorator
       def self.decorate
         [
           Decidim::Assemblies::Admin::CopyAssembly,
@@ -12,7 +12,7 @@ module Decidim
 
           klass.prepend(
             Module.new do
-              include Decidim::Admin::CopyAdminsAsFollowers
+              include Decidim::Admin::CopyAdminsAsFollowersDecorator
 
               private
 
@@ -52,6 +52,4 @@ module Decidim
   end
 end
 
-Rails.application.config.to_prepare do
-  Decidim::Admin::CopyAdminsAsFollowers.decorate
-end
+Decidim::Admin::CopyAdminsAsFollowersDecorator.decorate

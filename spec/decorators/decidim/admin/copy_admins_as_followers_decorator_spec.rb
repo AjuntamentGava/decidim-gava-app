@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Decidim::Admin::CopyAdminsAsFollowers do
+RSpec.describe Decidim::Admin::CopyAdminsAsFollowersDecorator do
   let(:organization) { create(:organization) }
   let(:copied_slug) { "copied-slug-#{SecureRandom.hex(4)}" }
   let(:invalid) { false }
