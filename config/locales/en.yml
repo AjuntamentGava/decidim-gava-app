@@ -10,6 +10,7 @@ en:
           document_type: Document type
           postal_code: Postal code
           date_of_birth: Date of birth
+        name: The census
       admin:
         census_authorization_handler:
           help:
