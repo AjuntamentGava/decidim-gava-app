@@ -26,6 +26,14 @@ ca:
       new:
         authorize: Verificar
     authorization_handlers:
+      ephemeral_census_authorization_handler:
+        explanation: Verifica't amb el padró
+        fields:
+          document_number: Número de document
+          document_type: Tipus de document
+          postal_code: Codi postal
+          date_of_birth: Data de naixement
+        name: El padró
       admin:
         census_authorization_handler:
           help:
