@@ -1,12 +1,12 @@
 # frozen_string_literal: true
-# This migration comes from decidim_forms (originally 20170515144119)
 
-# Migration updated after 0.25 upgrade
+# This migration comes from decidim_forms (originally 20170515144119)
+# This file has been modified by `decidim upgrade:migrations` task on 2026-09-01 06:17:35 UTC
 class CreateDecidimFormsAnswers < ActiveRecord::Migration[5.0]
   def change
     create_table :decidim_forms_answers do |t|
-      t.references :decidim_user, index: true
       t.text :body
+      t.references :decidim_user, index: true
       t.references :decidim_questionnaire, index: true
       t.references :decidim_question, index: { name: "index_decidim_forms_answers_question_id" }
 

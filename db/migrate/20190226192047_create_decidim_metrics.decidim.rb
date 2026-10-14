@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-# This migration comes from decidim (originally 20180705134647)
 
+# This migration comes from decidim (originally 20180705134647)
+# This file has been modified by `decidim upgrade:migrations` task on 2026-09-01 06:17:34 UTC
 class CreateDecidimMetrics < ActiveRecord::Migration[5.2]
   def change
     create_table :decidim_metrics do |t|

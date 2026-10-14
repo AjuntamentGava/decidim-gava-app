@@ -3,6 +3,14 @@ en:
     accessibility:
       front_page_link: link home
     authorization_handlers:
+      ephemeral_census_authorization_handler:
+        explanation: Verify with the census
+        fields:
+          document_number: Document number
+          document_type: Document type
+          postal_code: Postal code
+          date_of_birth: Date of birth
+        name: The census
       admin:
         census_authorization_handler:
           help:

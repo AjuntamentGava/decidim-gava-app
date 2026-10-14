@@ -69,6 +69,16 @@ Decidim::Verifications.register_workflow(:census_authorization_handler) do |auth
   end
 end
 
+if ENV.fetch("ENABLE_EPHEMERAL_CENSUS_AUTHORIZATION_HANDLER", "false") == "true"
+  Decidim::Verifications.register_workflow(:ephemeral_census_authorization_handler) do |workflow|
+    workflow.ephemeral = true
+    workflow.form = "EphemeralCensusAuthorizationHandler"
+    workflow.expires_in = 1.hour
+    workflow.renewable = true
+    workflow.time_between_renewals = 5.minutes
+  end
+end
+
 if Decidim.module_installed? :verifications
   Decidim::Verifications.configure do |config|
     config.document_types = Rails.application.secrets.dig(:verifications, :document_types).presence || %w(identification_number passport)

@@ -26,6 +26,14 @@ es:
       new:
         authorize: Verificar
     authorization_handlers:
+      ephemeral_census_authorization_handler:
+        explanation: Verificate con el padrón
+        fields:
+          document_number: Número de documento
+          document_type: Tipo de documento
+          postal_code: Código postal
+          date_of_birth: Fecha de nacimiento
+        name: El padrón
       admin:
         census_authorization_handler:
           help:
